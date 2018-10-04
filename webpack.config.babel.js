@@ -172,6 +172,10 @@ const developmentConfig = {
         changeOrigin: true,
         pathRewrite: { '/api': '' },
       },
+      '/.netlify': {
+        target: 'http://localhost:9000',
+        pathRewrite: {'^/.netlify/functions' : ''}
+      }
     },
     // uncomment if using vagrant
     // watchOptions: {

@@ -8,7 +8,7 @@
   "repository": "https://github.com/FCCColumbus/F3C_Website",
   "scripts": {
     "start": "yarn dev:start",
-    "dev:start": "nodemon --watch webpack.config.babel.js --exec \"webpack-dev-server\"",
+    "dev:start": "nodemon --watch webpack.config.babel.js --exec \"webpack-dev-server\" --exec \"netlify-lambda serve app/lambda\"",
     "prod:build": "rimraf lib dist && babel app -d lib --ignore .test.js && cross-env NODE_ENV=production webpack -p --progress",
     "serve": "yarn prod:build && serve ./dist -s",
     "lint": "eslint app webpack.config.babel.js --ext .js,.jsx",
@@ -22,7 +22,17 @@
     "test": "yarn lint && jest --coverage",
     "precommit": "lint-staged",
     "predeploy": "yarn prod:build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "build": "build:lambda",
+    "build:lambda": "netlify-lambda build app/lambda"
+  },
+  "proxy": {
+    "/.netlify/functions": {
+      "target": "http://localhost:9000",
+      "pathRewrite": {
+        "^/\\.netlify/functions": ""
+      }
+    }
   },
   "engines": {
     "yarn": ">=1.0.2"
@@ -38,6 +48,9 @@
     "font-awesome": "^4.7.0",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.9.2",
+    "mongodb": "^3.1.6",
+    "mongoose": "^5.3.1",
+    "netlify-lambda": "^0.4.0",
     "react": "16",
     "react-apollo": "^2.1.4",
     "react-dom": "16",
