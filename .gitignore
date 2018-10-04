@@ -101,3 +101,6 @@ $RECYCLE.BIN/
 
 ### Custom ###
 coverage/
+
+# Lambda Function generated files
+lambda/
