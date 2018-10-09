@@ -1,3 +1,4 @@
+import fs from 'fs'
 import webpack from 'webpack'
 import path from 'path'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
@@ -16,6 +17,11 @@ import { WDS_PORT } from './app/config/config'
 const LAUNCH_COMMAND = process.env.npm_lifecycle_event
 const isProduction = LAUNCH_COMMAND === 'prod:build'
 process.env.BABEL_ENV = LAUNCH_COMMAND
+
+const HTTPS_CREDS = {
+  key: '../ssl/server.key',
+  cert: '../ssl/server.crt',
+}
 
 const PATHS = {
   app: path.resolve(__dirname, 'app'),
@@ -86,14 +92,15 @@ const BrowserSyncPluginConfig = new BrowserSyncPlugin(
   {
     port: 3000,
     host: 'localhost', // 0.0.0.0 if using vagrant
-    proxy: `http://localhost:${WDS_PORT}/`,
+    proxy: `https://localhost:${WDS_PORT}/`,
+    https: HTTPS_CREDS,
     open: false,
     ghostMode: {
       clicks: true,
       forms: true,
       scroll: true,
     },
-    ghostMode: true, // eslint-disable-line no-dupe-keys
+    ghostMode: false, // eslint-disable-line no-dupe-keys
     notify: false,
   },
   {
@@ -160,7 +167,10 @@ const developmentConfig = {
     stats: 'errors-only',
     hot: true,
     inline: true,
-    // https: true,
+    https: {
+      key: fs.readFileSync(HTTPS_CREDS.key),
+      cert: fs.readFileSync(HTTPS_CREDS.cert),
+    },
     overlay: {
       errors: true,
       warnings: false,
@@ -173,7 +183,7 @@ const developmentConfig = {
         pathRewrite: { '/api': '' },
       },
       '/.netlify': {
-        target: 'http://localhost:9000',
+        target: 'https://localhost:9000',
         pathRewrite: { '^/.netlify/functions': '' },
       },
     },
