@@ -35,6 +35,9 @@ const GetUsers = () => (
     `}
   >
     {({ loading, error, data }) => {
+      if (loading) {
+        // do some loading stuff
+      }
       if (error) return 'error'
 
       const active = data.slack ? data.slack.users.active : 0

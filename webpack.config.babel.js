@@ -174,8 +174,8 @@ const developmentConfig = {
       },
       '/.netlify': {
         target: 'http://localhost:9000',
-        pathRewrite: {'^/.netlify/functions' : ''}
-      }
+        pathRewrite: { '^/.netlify/functions': '' },
+      },
     },
     // uncomment if using vagrant
     // watchOptions: {

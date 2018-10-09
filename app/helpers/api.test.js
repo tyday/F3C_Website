@@ -1,4 +1,4 @@
-import MockAdapter from 'axios-mock-adapter'
+// import MockAdapter from 'axios-mock-adapter'
 
 import { TDD } from './api'
 
