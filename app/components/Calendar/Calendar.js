@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
 import styles from './styles.scss'
-import Calendar from './Calendar.Date'
+import Calendar from '../../helpers/Calendar.Date'
 
 const Events = () => (
   <Query

@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
-import { Calendar } from 'components'
+import { EventsCards, EventsCalendar } from 'components'
 
 class CalendarContainer extends Component {
   componentDidMount() {}
-
   render() {
-    return <Calendar />
+    return <EventsCards />
   }
 }
 
