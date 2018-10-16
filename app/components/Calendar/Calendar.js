@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
 import styles from './styles.scss'
+import Calendar from './Calendar.Date'
 
 const Events = () => (
   <Query
@@ -59,7 +60,7 @@ Event.propTypes = {
   logo: PropTypes.string,
 }
 
-const Calendar = () => (
+const EventsCards = () => (
   <section>
     <h2 className={styles.headTitle}>Upcoming Events</h2>
     <div className={styles.cEvents}>
@@ -68,4 +69,13 @@ const Calendar = () => (
   </section>
 )
 
-export default Calendar
+const EventsCalendar = () => (
+  <section>
+    <h2 className={styles.headTitle}>Upcoming Events</h2>
+    <div className={styles.cEvents}>
+      <Events />
+    </div>
+  </section>
+)
+
+export default { EventsCards, EventsCalendar }

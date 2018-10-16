@@ -165,16 +165,29 @@ class Calendar extends Date {
     let l = 1
     const month = []
     const date = this
-    date.setDate = 1
+    date.setDate(1)
     for (let k = 0; l <= i; k++) {
       const week = []
       for (let j = 7; j >= 0; j--) {
         week[date.getDay()] = l
-        l += 1
+        if (l === i) {
+          break
+        } else {
+          l += 1
+          date.setDate(l)
+        }
       }
       month[k] = week
     }
     return month
+  }
+  generateYear() {
+    const year = {}
+    for (let i = 0; i <= 11; i++) {
+      this.setMonth(i)
+      year.i = this.generateMonth()
+    }
+    return year
   }
 }
 
