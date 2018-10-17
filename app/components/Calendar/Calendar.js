@@ -69,13 +69,20 @@ const EventsCards = () => (
   </section>
 )
 
-const EventsCalendar = () => (
-  <section>
-    <h2 className={styles.headTitle}>Upcoming Events</h2>
-    <div className={styles.cEvents}>
-      <Events />
-    </div>
-  </section>
-)
+const EventsCalendar = () => {
+  const today = new Calendar()
+  const month = <div />
+  for (let i = today.generateMonth.length; i > 0; i--) {
+    // do something
+  }
+  return (
+    <section>
+      <h2 className={styles.headTitle}>Upcoming Events</h2>
+      <div className={styles.cEvents}>
+        <Events />
+      </div>
+    </section>
+  )
+}
 
 export default { EventsCards, EventsCalendar }
